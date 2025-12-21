@@ -2,8 +2,9 @@
 
 *(Excel · Power BI · Streamlit)*
 
-
-
+## 🌐 Live Streamlit App
+The project includes a deployed Streamlit application for automated data cleaning checks and exploratory data analysis.
+https://customerpurchaseanalysisanddashboard-zmxskm2t273vjomsjyucak.streamlit.app/
 
 
 ## Project Overview
