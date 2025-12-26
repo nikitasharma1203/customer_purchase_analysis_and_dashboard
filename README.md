@@ -1,6 +1,6 @@
 # Bike Buyers Data Analysis Project
 
-*(Excel · Power BI · Streamlit)*
+*(Excel · Python · Power BI · Streamlit )*
 
 ## 🌐 Live Streamlit App
 The project includes a deployed Streamlit application for automated data cleaning checks and exploratory data analysis.
@@ -11,7 +11,7 @@ https://customerpurchaseanalysisanddashboard-zmxskm2t273vjomsjyucak.streamlit.ap
 
 
 
-This project analyzes customer demographic and lifestyle data to understand the factors influencing bike purchasing behavior. The analysis was performed end-to-end using Microsoft Excel for data cleaning, EDA, and dashboarding, and Power BI for interactive business intelligence visualization.
+This project analyzes customer demographic and lifestyle data to understand the factors influencing bike purchasing behavior. The analysis was performed end-to-end using Microsoft Excel and python for data cleaning, EDA, and dashboarding, and Power BI for interactive business intelligence visualization.
 
 
 
@@ -44,6 +44,9 @@ Bike-Buyers-Data-Analysis/
 │   → Interactive Power BI dashboard
 
 │
+  
+  -customer_purchase_python_eda.ipynb
+│     Data cleaning & EDA using Python (Pandas, Seaborn)
 
 ├── Bike\_Buyers\_PowerBI\_Report.pdf
 
@@ -93,6 +96,8 @@ Bike-Buyers-Data-Analysis/
 
 * Interactive Dashboard with Slicers
 
+
+* Python
 
 
 * Power BI
