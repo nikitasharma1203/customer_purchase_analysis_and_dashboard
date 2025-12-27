@@ -1,0 +1,98 @@
+```{r}
+library(shiny)
+library(tidyverse)
+library(readxl)
+library(janitor)
+df <- read_excel(
+  "C:/Users/sniks/OneDrive/Desktop/customer-purchase-analysis-and-dashboard/bike_buyers_analysis.xlsx",
+  sheet = "Raw_Data"
+) %>%
+  clean_names()
+```
+
+
+```{r}
+ui <- fluidPage(
+  
+  titlePanel("Customer Purchase Analysis Dashboard"),
+  
+  sidebarLayout(
+    
+    sidebarPanel(
+      selectInput(
+        "region",
+        "Select Region:",
+        choices = c("All", unique(df$region))
+      ),
+      
+      selectInput(
+        "gender",
+        "Select Gender:",
+        choices = c("All", unique(df$gender))
+      )
+    ),
+    
+    mainPanel(
+      h4("Key Metrics"),
+      verbatimTextOutput("kpi_text"),
+      
+      plotOutput("purchase_plot"),
+      plotOutput("income_plot")
+    )
+  )
+)
+```
+
+
+```{r}
+server <- function(input, output) {
+  
+  filtered_data <- reactive({
+    data <- df
+    
+    if (input$region != "All") {
+      data <- data %>% filter(region == input$region)
+    }
+    
+    if (input$gender != "All") {
+      data <- data %>% filter(gender == input$gender)
+    }
+    
+    data
+  })
+  
+  output$kpi_text <- renderText({
+    total <- nrow(filtered_data())
+    buyers <- filtered_data() %>%
+      filter(purchased_bike == "Yes") %>%
+      nrow()
+    
+    rate <- round((buyers / total) * 100, 2)
+    
+    paste(
+      "Total Customers:", total,
+      "\nBike Buyers:", buyers,
+      "\nPurchase Rate:", rate, "%"
+    )
+  })
+  
+  output$purchase_plot <- renderPlot({
+    ggplot(filtered_data(), aes(x = purchased_bike)) +
+      geom_bar(fill = "steelblue") +
+      labs(title = "Purchase Distribution")
+  })
+  
+  output$income_plot <- renderPlot({
+    ggplot(filtered_data(), aes(x = purchased_bike, y = income, fill = purchased_bike)) +
+      geom_boxplot() +
+      labs(title = "Income vs Purchase")
+  })
+}
+```
+
+
+```{r}
+shinyApp(ui = ui, server = server)
+
+```
+

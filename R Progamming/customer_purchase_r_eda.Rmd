@@ -1,0 +1,152 @@
+---
+title: "Customer Purchase Analysis: R EDA"
+author: "Nikita"
+output: html_notebook
+---
+
+## 1. Introduction
+
+This notebook performs data cleaning and (EDA)
+on customer purchase data to understand purchasing behavior and patterns.
+```{r}
+## 2. Load Libraries
+
+library(tidyverse)
+library(readxl)
+library(janitor)
+
+```
+```{r}
+## 3. Load Dataset
+
+df <- read_excel(
+  "C:/Users/sniks/OneDrive/Desktop/customer-purchase-analysis-and-dashboard/bike_buyers_analysis.xlsx",
+  sheet = "Raw_Data"
+)
+
+head(df)
+```
+```{r}
+## 4. Clean Column Names
+df <- df %>%
+  clean_names()
+
+glimpse(df)
+```
+```{r}
+## 5. Dataset Overview
+
+dim(df)
+summary(df)
+```
+```{r}
+## 6. Purchase Distribution
+
+ggplot(df, aes(x = purchased_bike)) +
+  geom_bar(fill = "steelblue") +
+  labs(
+    title = "Purchase Distribution",
+    x = "Purchased Bike",
+    y = "Count"
+  )
+```
+```{r}
+## 7. Purchase by Gender
+
+ggplot(df, aes(x = gender, fill = purchased_bike)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Purchase by Gender",
+    x = "Gender",
+    y = "Count"
+  )
+```
+```{r}
+## 8. Age Distribution
+
+ggplot(df, aes(x = age)) +
+  geom_histogram(bins = 20, fill = "darkgreen") +
+  labs(
+    title = "Age Distribution",
+    x = "Age",
+    y = "Count"
+  )
+```
+```{r}
+## 9. Age Group Creation
+
+df <- df %>%
+  mutate(
+    age_group = case_when(
+      age < 25 ~ "Under 25",
+      age >= 25 & age <= 35 ~ "25–35",
+      age > 35 & age <= 50 ~ "36–50",
+      TRUE ~ "50+"
+    )
+  )
+```
+```{r}
+## 10. Purchase by Age Group
+
+ggplot(df, aes(x = age_group, fill = purchased_bike)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Purchase by Age Group",
+    x = "Age Group",
+    y = "Count"
+  )
+```
+```{r}
+## 11. Income vs Purchase
+
+ggplot(df, aes(x = purchased_bike, y = income, fill = purchased_bike)) +
+  geom_boxplot() +
+  labs(
+    title = "Income vs Purchase Decision",
+    x = "Purchased Bike",
+    y = "Income"
+  )
+```
+```{r}
+## 12. Commute Distance vs Purchase
+
+ggplot(df, aes(x = commute_distance, fill = purchased_bike)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Commute Distance vs Purchase",
+    x = "Commute Distance",
+    y = "Count"
+  )
+```
+```{r}
+## 13. Region-wise Purchase
+
+ggplot(df, aes(x = region, fill = purchased_bike)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Region-wise Purchase",
+    x = "Region",
+    y = "Count"
+  )
+```
+```{r}
+## 14. Key Metrics
+
+total_customers <- nrow(df)
+
+buyers <- df %>%
+  filter(purchased_bike == "Yes") %>%
+  nrow()
+
+purchase_rate <- buyers / total_customers
+
+total_customers
+buyers
+round(purchase_rate * 100, 2)
+```
+## 15. Key Insights
+
+- Customers with higher income are more likely to purchase.
+- Customers aged 30–50 represent the primary buyer segment.
+- Shorter commute distances are associated with higher purchase likelihood.
+- Purchasing behavior varies significantly across regions.
