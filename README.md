@@ -9,13 +9,12 @@ https://customerpurchaseanalysisanddashboard-zmxskm2t273vjomsjyucak.streamlit.ap
 
 ## Project Overview
 
-This project analyzes customer demographic and lifestyle data to understand the factors influencing bike purchasing behavior. The analysis was performed end-to-end using Microsoft Excel, R and python for data cleaning, EDA, and dashboarding, and Power BI  and Shiny for interactive business intelligence visualization.
+I worked through the basics: cleaning the data, running some exploratory analysis, and putting together dashboards. Excel, R, and Python handled the prep and EDA, while Power BI and Shiny gave the data a more interactive look.
 
-The project demonstrates practical data analysis skills including data cleaning, exploratory data analysis (EDA), dashboard creation, and BI reporting.
+It’s a simple end‑to‑end example that covers the essentials of data analysis: cleaning, exploring, and turning results into easy‑to‑read visuals.
 
 
-
-## Project Files \& Structure
+## Project Files & Structure
 
 
 ```
@@ -50,7 +49,7 @@ Bike-Buyers-Data-Analysis/
 
 └── README.md
 ```
-## Tools \& Technologies Used
+## Tools 
 
 * Microsoft Excel
 * Data Cleaning
@@ -113,17 +112,9 @@ KPI Metrics:
 
 ## Streamlit EDA Application
 
-A generalized Streamlit app (data\_cleaning+eda\_app.py) was developed to perform:
+A generalized Streamlit app (data\_app.py) was developed to perform:
 * Dataset overview
 * Missing value summary
-* Automatic detection of numeric \& categorical columns
-* Interactive filters
+* Automatic detection of numeric & categorical columns
 * Auto-generated EDA visualizations
 
-
-
-## Key Insights
-* Higher income customers are more likely to purchase bikes
-* Customers aged 30–50 form the primary buyer segment
-* Short commute distances significantly increase bike purchases
-* Regional differences strongly affect purchasing behavior
