@@ -3,14 +3,8 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 
-# -------------------------------
-# PAGE CONFIG
-# -------------------------------
-st.set_page_config(page_title="Advanced EDA Tool", layout="wide")
+st.set_page_config(page_title="Data Cleaning and EDA Tool", layout="wide")
 
-# -------------------------------
-# 🎨 CUSTOM UI STYLING
-# -------------------------------
 st.markdown("""
 <style>
 .main {
@@ -47,7 +41,7 @@ h2 {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🚀 Advanced Data Cleaning & EDA Platform")
+st.title("🚀 Advanced Data Cleaning & EDA")
 
 # -------------------------------
 # SIDEBAR
@@ -76,9 +70,7 @@ with st.spinner("Loading dataset..."):
 numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
 categorical_cols = df.select_dtypes(exclude=np.number).columns.tolist()
 
-# -------------------------------
-# SIDEBAR CONTROLS
-# -------------------------------
+
 st.sidebar.header("⚙️ Controls")
 
 show_raw = st.sidebar.toggle("Show Raw Data")
@@ -87,9 +79,7 @@ auto_mode = st.sidebar.button("⚡ Auto Analyze")
 
 df_clean = df.copy()
 
-# -------------------------------
-# FILTERS
-# -------------------------------
+
 if enable_filters:
     st.sidebar.subheader("🔎 Filters")
     for col in categorical_cols:
@@ -100,9 +90,7 @@ if enable_filters:
         )
         df_clean = df_clean[df_clean[col].isin(selected)]
 
-# -------------------------------
-# TABS
-# -------------------------------
+
 tab1, tab2, tab3, tab4 = st.tabs([
     "📊 Overview",
     "🧼 Cleaning",
@@ -110,9 +98,6 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "🧠 Insights"
 ])
 
-# ===============================
-# 📊 OVERVIEW
-# ===============================
 with tab1:
     st.subheader("Dataset Overview")
 
@@ -138,9 +123,7 @@ with tab1:
         st.subheader("📄 Full Dataset")
         st.dataframe(df_clean)
 
-# ===============================
-# 🧼 CLEANING
-# ===============================
+
 with tab2:
     st.subheader("Missing Value Handling")
 
@@ -179,9 +162,7 @@ with tab2:
         "cleaned_data.csv"
     )
 
-# ===============================
-# 📈 VISUALIZATIONS
-# ===============================
+
 with tab3:
     st.subheader("Smart Visualizations")
 
@@ -248,9 +229,7 @@ with tab3:
 
         st.plotly_chart(fig, use_container_width=True)
 
-# ===============================
-# 🧠 INSIGHTS
-# ===============================
+
 with tab4:
     st.subheader("Automated Insights")
 
