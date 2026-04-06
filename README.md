@@ -4,7 +4,7 @@
 
 ## 🌐 Live Streamlit App
 The project includes a deployed Streamlit application for automated data cleaning checks and exploratory data analysis.
-https://customerpurchaseanalysisanddashboard-zmxskm2t273vjomsjyucak.streamlit.app/
+https://customerpurchaseanalysisanddashboard-8kjnv3tj6khyhzsycm5zlh.streamlit.app/
 
 
 ## Project Overview
